@@ -6,6 +6,7 @@ import Header from './components/Header.jsx';
 import HomeHeader from './pages/home/HomeHeader.jsx';
 import Home from './pages/home/Home.jsx';
 import AdminHome from './pages/admin_view/AdminHome.jsx';
+import Login from './pages/login/Login.jsx';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path='/users' element={<UserList />}></Route>
             <Route path='/admin' element={<AdminHome />}></Route>
             <Route path='/' element={<Home />}></Route>
+            <Route path='/login' element={<Login />}></Route>
           </Routes> 
         </div> 
       </BrowserRouter>
