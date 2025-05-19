@@ -7,6 +7,7 @@ import HomeHeader from './pages/home/HomeHeader.jsx';
 import Home from './pages/home/Home.jsx';
 import AdminHome from './pages/admin_view/AdminHome.jsx';
 import Login from './pages/login/Login.jsx';
+import Register from './pages/register/register.jsx';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <HomeHeader />
         <div className="container mx-auto">
           <Routes>
+            <Route path="/register" element={<Register />}></Route>
             <Route path="/offers" element={<OfferList />}></Route>
             <Route path='/users' element={<UserList />}></Route>
             <Route path='/admin' element={<AdminHome />}></Route>
