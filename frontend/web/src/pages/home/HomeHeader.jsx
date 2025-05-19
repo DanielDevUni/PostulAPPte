@@ -1,5 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import './homeHeader.css';
 
 function BrandExample() {
   return (
@@ -16,15 +17,15 @@ function BrandExample() {
                 <a className="nav-link active" aria-current="page" href="#">Inicio</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="#">Ofertas</a>
+                <a className="nav-link" href="#">Iniciar Sesión</a>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="#">Postulaciones</a>
+                <a className="nav-link" href="#">Sobre nosotros</a>
+                </li>
+                <li className="nav-item">
+                <a className="nav-link" href="#">Contacto</a>
                 </li>
             </ul>
-            <span className="navbar-text">
-                Space to User
-            </span>
             </div>
         </div>
         </nav>
