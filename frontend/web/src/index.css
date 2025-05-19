@@ -1,0 +1,7 @@
+.card-custom > .card-header{
+  background-color: #386bfe !important;
+  border-radius: 4px 4px !important;
+  margin: 10px 10px 0 10px !important;
+  color: #fff !important;
+  padding: 10px;
+}
