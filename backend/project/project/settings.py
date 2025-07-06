@@ -57,6 +57,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project.urls'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -89,6 +95,10 @@ DATABASES = {
     }
 }
 
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("JWT",),
+    "USER_ID_FIELD": "user_id",
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

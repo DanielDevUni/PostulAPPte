@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from datetime import datetime
 
 class DocumentType(models.Model):
     name = models.CharField(max_length=50)
@@ -55,7 +56,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     document = models.CharField(max_length=20, unique=True)
     email = models.EmailField(unique=True)
     address = models.CharField(max_length=255)
-    birth_date = models.DateField()
+    birth_date = models.DateField(default=datetime.now)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     cellphone_number = models.CharField(max_length=20)
     password = models.CharField(max_length=128)  # Django maneja la encriptación
