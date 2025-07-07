@@ -1,8 +1,12 @@
 import React from "react";
 import './adminHome.css';
 import { Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const AdminHome = () => {
+    const navigate = useNavigate();
+    // Redirigir a la página de inicio si el usuario no es un administrador
     return (
         <Container className="admin-jumbo bg-light p-5 mb-4 rounded.3">
             <div className="container-fluid py-5">
@@ -18,9 +22,9 @@ const AdminHome = () => {
                     Para editar o eliminar usuarios internos, haz click en el botón "Editar Usuario Interno".
                     Para editar o eliminar aplicantes, haz click en el botón "Editar Aplicante".
                 </p>
-                <a className="btn btn-primary btn-lg" href="#" role="button">
+                <Button variant="primary" size="lg" className="mb-3" onClick={() => navigate('/admin/create-user')}>
                     Crear Usuario Interno
-                </a>
+                </Button>
                 <a className="btn btn-secondary btn-lg" href="#" role="button">
                     Editar Usuario Interno
                 </a>

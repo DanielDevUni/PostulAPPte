@@ -13,8 +13,35 @@ const Login = () => {
 
     const handleLogin = (event) => {
         event.preventDefault();
-        // Aquí puedes agregar la lógica de autenticación
-        // Por ejemplo, enviar una solicitud a tu API para verificar las credenciales
+        
+        const username = event.target.formUsuario.value;
+        const password = event.target.formPassword.value;
+
+        if (!captchaValue) {
+            alert("Por favor, completa el reCAPTCHA.");
+            return;
+        }
+        else if (captchaValue === "error") {
+            alert("Error en el reCAPTCHA. Por favor, inténtalo de nuevo.");
+            return;
+        }
+        else if (captchaValue === "expired") {
+            alert("El reCAPTCHA ha expirado. Por favor, inténtalo de nuevo.");
+            return;
+        }
+        else if (captchaValue === "invalid") {
+            alert("El reCAPTCHA es inválido. Por favor, inténtalo de nuevo.");
+            return;
+        }
+        else if (captchaValue === "missing") {
+            alert("El reCAPTCHA está incompleto. Por favor, inténtalo de nuevo.");
+            return;
+        }
+        else if (!username || !password) {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
         // Si la autenticación es exitosa, redirigir al usuario a la página de inicio
         navigate('/admin');
     };
