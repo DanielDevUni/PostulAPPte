@@ -1,7 +1,126 @@
+body{
+  color: #313944;
+  font-family: 'CT Font', Arial, sans-serif;
+  background-color: #b4c7ff2c !important;
+}
+
+.auth-bg {
+  min-height: calc(100vh - 56px);
+  background-image: url('./../public/img/auth-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-color: #fff;
+  position: relative;
+}
+
+.auth-container {
+  position: absolute;
+  top: 15%;             
+  right: 10%;            
+  max-width: 400px;     
+  width: 90vw;          
+  z-index: 2;           
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+  .auth-container {
+    left: 50%;
+    right: auto;
+    top: 5%;
+    transform: translateX(-50%);
+    max-width: 98vw;
+    width: 98vw;
+    min-width: 0;
+    padding: 0 20px;
+  }
+}
+
 .card-custom > .card-header{
-  background-color: #386bfe !important;
+  background-color: #396bff !important;
   border-radius: 4px 4px !important;
   margin: 10px 10px 0 10px !important;
   color: #fff !important;
   padding: 10px;
+}
+
+.card-form {
+  border-color: #396bff !important;
+}
+
+.card-form > .card-header {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.btn-custom{
+  background-color: #396bff !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+  padding: 10px 20px !important;
+  font-weight: 100 !important;
+}
+
+.btn-custom:hover {
+  background-color: #1d50e7 !important;
+  color: #fff !important;
+}
+
+.btn-outline-custom {
+  border-color: #396bff !important;
+  color: #396bff !important;
+  border-radius: 3px !important;
+  padding: 10px 20px !important;
+  font-weight: 100 !important;
+}
+
+.btn-outline-custom:hover {
+  background-color: #396bff !important;
+  color: #fff !important;
+}
+
+.bg-custom {
+  background-color: #396bff !important;
+  color: #fff !important;
+}
+
+.badge-custom {
+  background-color: #396bff !important;
+  color: #fff !important;
+  padding: 5px 10px !important;
+  border-radius: 3px !important;
+}
+
+.title-custom{
+  color: #396bff !important;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.desc-custom {
+  color: #4B5968 !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.text-custom {
+  color: #396bff !important;
+  font-weight: 400;
+}
+
+.underline{
+  text-decoration: underline !important;
+  cursor: pointer  !important;
+}
+
+.fs-sm{
+  font-size: 13px !important;
+}
+
+.navbar-postulappte {
+  background-color: #fff !important;
+  font-weight: 400;
+  color: #313944 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
 }

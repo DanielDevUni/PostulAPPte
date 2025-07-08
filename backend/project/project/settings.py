@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_recaptcha',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -148,3 +149,7 @@ AUTH_USER_MODEL = 'user.CustomUser'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173"
 ]
+
+# Recaptcha settings
+RECAPTCHA_PUBLIC_KEY = '6LetGXsrAAAAANBrLdW5YiKZvgq3khxb6t-M42rS'
+RECAPTCHA_PRIVATE_KEY = '6LetGXsrAAAAAImAz-38HqKz-MpdF8JpE7bpje7y'
