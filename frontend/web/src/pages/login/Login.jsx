@@ -48,20 +48,7 @@ const Login = () => {
         navigate('/admin');
     };
 
-    const handleRecaptchaChange = (value) => {
-        setCaptchaValue(value);
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (!captchaValue) {
-            alert("Por favor, completa el reCAPTCHA.");
-            return;
-        }
-        // Aquí puedes agregar la lógica de autenticación
-        // Por ejemplo, enviar una solicitud a tu API para verificar las credenciales
-        console.log("Captcha completado:", captchaValue);
-    }
+    
 
     return (
         <Container className="d-flex allign-items-center justify-content-center min-vh-100 bg-light">

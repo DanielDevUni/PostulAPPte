@@ -25,12 +25,12 @@ const AdminHome = () => {
                 <Button variant="primary" size="lg" className="mb-3" onClick={() => navigate('/admin/create-user')}>
                     Crear Usuario Interno
                 </Button>
-                <a className="btn btn-secondary btn-lg" href="#" role="button">
+                <Button variant="secondary" size="lg" className="mb-3" onClick={() => navigate('/admin/intern-user-list')}>
                     Editar Usuario Interno
-                </a>
-                <a className="btn btn-success btn-lg" href="#" role="button">
+                </Button>
+                <Button variant="success" size="lg" className="mb-3" onClick={() => navigate('/admin/user-list')}>
                     Editar Aplicante
-                </a>
+                </Button>
             </div>
         </Container>
     )
