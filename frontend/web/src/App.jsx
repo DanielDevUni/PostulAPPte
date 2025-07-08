@@ -9,6 +9,7 @@ import AdminHome from './pages/admin_view/AdminHome.jsx';
 import CreateUserAdmin from './pages/admin_view/CreateInternUser.jsx'
 import Login from './pages/login/Login.jsx';
 import Register from './pages/register/register.jsx';
+import UserProfile from './pages/Profile/ProfileUser.jsx';'./pages/profile/ProfileUser.jsx'
 
 function App() {
 
@@ -18,9 +19,8 @@ function App() {
         <HomeHeader />
         <div className="container mx-auto">
           <Routes>
+            <Route path="/profile" element={<UserProfile />}></Route>
             <Route path="/register" element={<Register />}></Route>
-            <Route path="/offers" element={<OfferList />}></Route>
-            <Route path='/users' element={<UserList />}></Route>
             <Route path='/admin' element={<AdminHome />}></Route>
             <Route path='/admin/create-user' element={<CreateUserAdmin />}></Route>
             <Route path='/' element={<Home />}></Route>

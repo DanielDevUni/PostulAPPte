@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './login.css';
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
@@ -10,6 +10,22 @@ import Card from "react-bootstrap/Card";
 
 const Login = () => {
     const navigate = useNavigate();
+    
+    // Funciones de reCAPTCHA
+
+    const [captchaNumbers, setCaptchaNumbers] = useState({ a: 0, b: 0 });
+    const [captchaInput, setCaptchaInput] = useState("");
+    
+
+    useEffect(() => {
+        const a = Math.floor(Math.random() * 10);
+        const b = Math.floor(Math.random() * 10);
+        setCaptchaNumbers({ a, b });
+    }, []);
+
+    const validateCaptcha = () => {
+        return parseInt(captchaInput, 10) === (captchaNumbers.a + captchaNumbers.b);
+    };
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -17,32 +33,18 @@ const Login = () => {
         const username = event.target.formUsuario.value;
         const password = event.target.formPassword.value;
 
-        if (!captchaValue) {
-            alert("Por favor, completa el reCAPTCHA.");
-            return;
-        }
-        else if (captchaValue === "error") {
-            alert("Error en el reCAPTCHA. Por favor, inténtalo de nuevo.");
-            return;
-        }
-        else if (captchaValue === "expired") {
-            alert("El reCAPTCHA ha expirado. Por favor, inténtalo de nuevo.");
-            return;
-        }
-        else if (captchaValue === "invalid") {
-            alert("El reCAPTCHA es inválido. Por favor, inténtalo de nuevo.");
-            return;
-        }
-        else if (captchaValue === "missing") {
-            alert("El reCAPTCHA está incompleto. Por favor, inténtalo de nuevo.");
-            return;
-        }
-        else if (!username || !password) {
+        if (!username || !password) {
             alert("Por favor, completa todos los campos.");
             return;
         }
 
+        if(!validateCaptcha()) {
+            alert("Por favor, resuelve el captcha correctamente.");
+            return;
+        }
+        
         // Si la autenticación es exitosa, redirigir al usuario a la página de inicio
+
         navigate('/admin');
     };
 
@@ -86,10 +88,16 @@ const Login = () => {
                     </Form.Group>
 
                     <div className="mb-3 d-flex justify-content-center">
-                        <ReCaptcha
-                            sitekey="SiteKey"
-                            onChange={handleRecaptchaChange}
-                        />
+                        <Form.Group className="mb-3" controlId="formCaptcha">
+                            <Form.Label>¿Cuánto es {captchaNumbers.a} + {captchaNumbers.b}?</Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="Ingrese la respuesta"
+                                value={captchaInput}
+                                onChange={(e) => setCaptchaInput(e.target.value)}
+                                required
+                            />
+                        </Form.Group>
                     </div>
 
                     <Button variant="primary" type="submit" className="w-100">
@@ -99,6 +107,11 @@ const Login = () => {
                     <div className="text-center mt-3">
                         <a href="/register" className="register-link">
                             ¿No tienes cuenta? Regístrate aquí
+                        </a>
+                    </div>
+                    <div className ="text-center mt-2">
+                        <a href="/forgot-password" className="forgot-password-link">
+                            ¿Olvidaste tu contraseña?
                         </a>
                     </div>
                 </Form>

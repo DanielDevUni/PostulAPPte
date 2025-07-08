@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Card, Col } from "react-bootstrap";
 import './register.css';
@@ -10,60 +10,88 @@ import ReCaptcha from "react-google-recaptcha";
 
 
 const Register = () => {
-
     const navigate = useNavigate();
-    const [captchaValue, setCaptchaValue] = useState(null);
+
+    // Funciones de reCAPTCHA
+
+    const [captchaNumbers, setCaptchaNumbers] = useState({ a: 0, b: 0 });
+    const [captchaInput, setCaptchaInput] = useState("");
+    
+
+    useEffect(() => {
+        const a = Math.floor(Math.random() * 10);
+        const b = Math.floor(Math.random() * 10);
+        setCaptchaNumbers({ a, b });
+    }, []);
+
+    const validateCaptcha = () => {
+        return parseInt(captchaInput, 10) === (captchaNumbers.a + captchaNumbers.b);
+    };
+
+    
+
+
+    // Funciones de validación
+
+    const isEmpty = (value) => !value || value.trim() === "";
+    
+    const isValidPassword = (password) => {
+        const errors = [];
+        if (password.length < 8) errors.push("al menos 8 caracteres");
+        if (!/[A-Z]/.test(password)) errors.push("una letra mayúscula");
+        if (!/[0-9]/.test(password)) errors.push("un número");
+        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) errors.push("un carácter especial");
+        return errors;
+    };
 
     const handleRegister = (event) => {
         event.preventDefault();
 
-        const name = event.target.formNombre.value;
-        const surname = event.target.formApellido.value;
-        const username = event.target.formUsuario.value;
-        const birthdate = event.target.formBirthdate.value;
-        const address = event.target.formAddress.value;
-        const phone = event.target.formPhone.value;
-        const cellphone = event.target.formCellphone.value;
-        const status = event.target.formStatus.value;
-        const typeDocument = event.target.formTypeDocument.value;
-        const documentId = event.target.formDocumentId.value;
-        const gender = event.target.formGender.value;
-        const email = event.target.formEmail.value;
-        const password = event.target.formPassword.value;
-        const confirmPassword = event.target.formConfirmPassword.value;
+        const form = event.target;
+        const data = {
+            name: form.formNombre.value,
+            surname: form.formApellido.value,
+            username: form.formUsuario.value,
+            birthdate: form.formBirthdate.value,
+            address: form.formAddress.value,
+            phone: form.formPhone.value,
+            cellphone: form.formCellphone.value,
+            typeDocument: form.formTypeDocument.value,
+            documentId: form.formDocumentId.value,
+            gender: form.formGender.value,
+            email: form.formEmail.value,
+            password: form.formPassword.value,
+            confirmPassword: form.formConfirmPassword.value,
+        };
 
-        if (!captchaValue) {
-            alert("Por favor, completa el reCAPTCHA.");
+        // Validación del reCAPTCHA
+        if(!validateCaptcha()) {
+            alert("Por favor, resuelve el captcha correctamente.");
             return;
         }
-        else if (captchaValue === "expired-captcha") {
-            alert("El reCAPTCHA ha expirado. Por favor, inténtalo de nuevo.");
+
+        // Verifica si algún campo obligatorio está vacío
+        for (const key in data) {
+            if (isEmpty(data[key])) {
+                alert("Por favor, completa todos los campos requeridos.");
+                return;
+            }
+        }
+
+        if (data.password !== data.confirmPassword) {
+            alert("Las contraseñas no coinciden.");
             return;
         }
-        else if (captchaValue === "invalid-captcha") {
-            alert("El reCAPTCHA es inválido. Por favor, inténtalo de nuevo.");
+
+        const passwordErrors = isValidPassword(data.password);
+        if (passwordErrors.length > 0) {
+            alert("La contraseña debe contener " + passwordErrors.join(", ") + ".");
             return;
         }
-        else if (captchaValue === "error-captcha") {
-            alert("Ha ocurrido un error con el reCAPTCHA. Por favor, inténtalo de nuevo.");
-            return;
-        }
-        else if (!name || !surname || !username || !birthdate || !address || !phone || !cellphone || !status || !typeDocument || !documentId || !gender || !email || !password || !confirmPassword) {
-            alert("Por favor, completa todos los campos requeridos.");
-            return;
-        }
-        else if (password !== confirmPassword) {
-            alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
-            return;
-        }
-        
-        // Lógica de registro aquí
-        console.log("Captcha completado:", captchaValue);
+
+        // Si todo está bien
+        console.log("Registro exitoso:", data);
         navigate('/login');
-    };
-
-    const handleRecaptchaChange = (value) => {
-        setCaptchaValue(value);
     };
 
 
@@ -126,17 +154,6 @@ const Register = () => {
                         </Col>
 
                         <Col md={6}>
-                            <Form.Group className="mb-3" controlId="formStatus">
-                                <Form.Label>Estado</Form.Label>
-                                <Form.Select required>
-                                    <option value="">Seleccione su estado</option>
-                                    <option value="active">Activo</option>
-                                    <option value="inactive">Inactivo</option>
-                                </Form.Select>
-                            </Form.Group>
-                        </Col>
-
-                        <Col md={6}>
                             <Form.Group className="mb-3" controlId="formTypeDocument">
                                 <Form.Label>Tipo de Documento</Form.Label>
                                 <Form.Select required>
@@ -190,9 +207,16 @@ const Register = () => {
                         </Col>
 
                         <Col xs={12}>
-                            <div className="mb-3 d-flex justify-content-center">
-                                <ReCaptcha sitekey="SiteKey" onChange={handleRecaptchaChange} />
-                            </div>
+                            <Form.Group className="mb-3" controlId="formCaptcha">
+                                <Form.Label>¿Cuánto es {captchaNumbers.a} + {captchaNumbers.b}?</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    placeholder="Ingrese la respuesta"
+                                    value={captchaInput}
+                                    onChange={(e) => setCaptchaInput(e.target.value)}
+                                    required
+                                />
+                            </Form.Group>
                         </Col>
 
                         <Col xs={12}>
