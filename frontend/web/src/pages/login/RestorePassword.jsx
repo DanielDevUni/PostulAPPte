@@ -95,7 +95,7 @@ const RestorePassword = () => {
                         <Form.Label>
                             Contraseña
                         </Form.Label>
-                        <Form.Control type="text" placeholder="Ingrese su usuario" required />
+                        <Form.Control type="text" placeholder="Ingrese su nueva contraseña" required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formConfirmPassword">
