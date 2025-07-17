@@ -14,6 +14,10 @@ import EditUser from './pages/admin_view/EditUser.jsx';
 import InternUserList from './pages/admin_view/InternUserList.jsx';
 import RestorePassword from './pages/login/RestorePassword.jsx';
 import ForgotPassword from './pages/login/ForgotPassword.jsx';
+import EditApplicant from './pages/Applicant/EditApplicant.jsx' 
+import ApplicationForm from './pages/Applicant/ApplicationForm.jsx';
+import JobOfferForm from './pages/Applicant/JobOfferForm.jsx';
+
 
 function App() {
 
@@ -34,6 +38,10 @@ function App() {
             <Route path='/admin/intern-user-list' element={<InternUserList />}></Route>
             <Route path='/restore-password' element={<RestorePassword />}></Route>
             <Route path='/forgot-password' element={<ForgotPassword />}></Route>
+            <Route path="/edit-applicant/:id" element={<EditApplicant />} /> 
+            <Route path="/ApplicationForm" element={<ApplicationForm />} />
+            <Route path="/register-job-offer" element={<JobOfferForm />} />
+
           </Routes> 
         </div> 
       </BrowserRouter>

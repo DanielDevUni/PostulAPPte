@@ -28,7 +28,7 @@ const AdminHome = () => {
                 <Button variant="secondary" size="lg" className="mb-3" onClick={() => navigate('/admin/intern-user-list')}>
                     Editar Usuario Interno
                 </Button>
-                <Button variant="success" size="lg" className="mb-3" onClick={() => navigate('/admin/user-list')}>
+                <Button variant="success" size="lg" className="mb-3" onClick={() => navigate('/edit-applicant/1')}> 
                     Editar Aplicante
                 </Button>
             </div>
