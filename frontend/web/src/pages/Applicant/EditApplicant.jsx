@@ -2,43 +2,46 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
-// Datos simulados
 const aplicantes = [
   {
     id: 1,
     name: "Ana",
     surname: "Gómez",
     username: "anag",
+    email: "ana@example.com",
+    password: "12345678",
+    confirmPassword: "12345678",
     birthdate: "1988-01-22",
+    gender: "Femenino",
     address: "Av. Siempre Viva",
     phone: "601112233",
     cellphone: "3124567890",
-    status: "activo",
-    typeDocument: "C.C",
     documentId: "11112222",
-    gender: "Femenino",
-    email: "ana@example.com",
-    role: "admin"
+    typeDocument: "C.C",
+    status: "activo"
   }
 ];
 
 const EditarAplicante = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
     username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
     birthdate: '',
+    gender: '',
     address: '',
     phone: '',
     cellphone: '',
-    status: '',
-    typeDocument: '',
     documentId: '',
-    gender: '',
-    email: '',
-    role: ''
+    typeDocument: '',
+    status: ''
   });
 
   useEffect(() => {
@@ -58,95 +61,148 @@ const EditarAplicante = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    const requiredFields = ['name', 'surname', 'username', 'email', 'password', 'confirmPassword'];
+    const missingField = requiredFields.find(field => !formData[field]);
+    if (missingField) {
+      alert('Por favor completa todos los campos obligatorios.');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+
     console.log('Datos actualizados:', formData);
     alert('Aplicante editado correctamente');
     navigate('/');
   };
 
   return (
-     <Container className="mt-5 d-flex justify-content-center">
-    <div className="card shadow p-4" style={{ maxWidth: '900px', width: '100%', borderRadius: '1rem' }}>
-      <h3 className="mb-4 text-center">Editar Aplicante</h3>
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col md={6}>
-            <Form.Group className="mb-3">
-              <Form.Label>Nombre</Form.Label>
-              <Form.Control name="name" value={formData.name} onChange={handleChange} required />
-            </Form.Group>
+    <Container className="min-vh-100 d-flex justify-content-center align-items-center bg-info-subtle">
+      <div className="card shadow p-4" style={{ maxWidth: '900px', width: '100%', borderRadius: '1rem' }}>
+        <h3 className="mb-4 text-center">Editar Aplicante</h3>
+        <Form onSubmit={handleSubmit}>
+          <Row>
+            <Col md={6}>
+              <Form.Group className="mb-3">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control name="name" value={formData.name} onChange={handleChange} required />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Apellido</Form.Label>
-              <Form.Control name="surname" value={formData.surname} onChange={handleChange} required />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Apellido</Form.Label>
+                <Form.Control name="surname" value={formData.surname} onChange={handleChange} required />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Usuario</Form.Label>
-              <Form.Control name="username" value={formData.username} onChange={handleChange} required />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Usuario</Form.Label>
+                <Form.Control name="username" value={formData.username} onChange={handleChange} required />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Fecha de nacimiento</Form.Label>
-              <Form.Control type="date" name="birthdate" value={formData.birthdate} onChange={handleChange} />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Correo electrónico</Form.Label>
+                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} required />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Dirección</Form.Label>
-              <Form.Control name="address" value={formData.address} onChange={handleChange} />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Teléfono</Form.Label>
-              <Form.Control name="phone" value={formData.phone} onChange={handleChange} />
-            </Form.Group>
-          </Col>
+              <Form.Group className="mb-3">
+                <Form.Label>Confirmar Contraseña</Form.Label>
+                <Form.Control
+                  type={showPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
 
-          <Col md={6}>
-            <Form.Group className="mb-3">
-              <Form.Label>Celular</Form.Label>
-              <Form.Control name="cellphone" value={formData.cellphone} onChange={handleChange} />
-            </Form.Group>
+              <div className="mb-3">
+                <Form.Check
+                  type="checkbox"
+                  label="Mostrar contraseñas"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                />
+              </div>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Estado</Form.Label>
-              <Form.Control name="status" value={formData.status} onChange={handleChange} />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Fecha de nacimiento</Form.Label>
+                <Form.Control type="date" name="birthdate" value={formData.birthdate} onChange={handleChange} />
+              </Form.Group>
+            </Col>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Tipo de Documento</Form.Label>
-              <Form.Control name="typeDocument" value={formData.typeDocument} onChange={handleChange} />
-            </Form.Group>
+            <Col md={6}>
+              <Form.Group className="mb-3">
+                <Form.Label>Género</Form.Label>
+                <Form.Control name="gender" value={formData.gender} onChange={handleChange} />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Número de Documento</Form.Label>
-              <Form.Control name="documentId" value={formData.documentId} onChange={handleChange} />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Dirección</Form.Label>
+                <Form.Control name="address" value={formData.address} onChange={handleChange} />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Género</Form.Label>
-              <Form.Control name="gender" value={formData.gender} onChange={handleChange} />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Teléfono</Form.Label>
+                <Form.Control name="phone" value={formData.phone} onChange={handleChange} />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Correo Electrónico</Form.Label>
-              <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} />
-            </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Celular</Form.Label>
+                <Form.Control name="cellphone" value={formData.cellphone} onChange={handleChange} />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Rol</Form.Label>
-              <Form.Control name="role" value={formData.role} onChange={handleChange} />
-            </Form.Group>
-          </Col>
-        </Row>
+              <Form.Group className="mb-3">
+                <Form.Label>Tipo de documento</Form.Label>
+                <Form.Select name="typeDocument" value={formData.typeDocument} onChange={handleChange}>
+                  <option value="">Seleccione</option>
+                  <option value="C.C">Cédula de Ciudadanía</option>
+                  <option value="T.I">Tarjeta de Identidad</option>
+                  <option value="C.E">Cédula de Extranjería</option>
+                  <option value="P.A">Pasaporte</option>
+                  <option value="NIT">NIT</option>
+                </Form.Select>
+              </Form.Group>
 
-        <div className="text-center mt-4">
-          <Button type="submit" variant="primary" size="lg">
-            Guardar Cambios
-          </Button>
-        </div>
-      </Form>
-    </div>
-  </Container>
+              <Form.Group className="mb-3">
+                <Form.Label>Número de documento</Form.Label>
+                <Form.Control
+                  name="documentId"
+                  value={formData.documentId}
+                  readOnly
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+  <Form.Label>Estado</Form.Label>
+  <Form.Select name="status" value={formData.status} onChange={handleChange} required>
+    <option value="activo">Activo</option>
+    <option value="inactivo">Inactivo</option>
+  </Form.Select>
+</Form.Group>
+            </Col>
+          </Row>
+
+          <div className="text-center mt-4">
+            <Button type="submit" variant="primary" size="lg">
+              Guardar Cambios
+            </Button>
+          </div>
+        </Form>
+      </div>
+    </Container>
   );
 };
 

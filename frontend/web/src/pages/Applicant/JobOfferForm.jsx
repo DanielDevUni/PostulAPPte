@@ -3,21 +3,25 @@ import { Form, Button, Container } from 'react-bootstrap';
 
 const JobOfferForm = () => {
   const [formData, setFormData] = useState({
+    name: '',
+    level: '',
     title: '',
-    company: '',
-    location: '',
-    description: '',
-    requirements: '',
+    function: '',
     salary: '',
-    type: ''
+    date_start: '',
+    date_finish: '',
+    status: false,
+    charge_type_id: '',
+    user_id: '',
+    rank_id: ''
   });
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Nueva oferta:', formData);
     alert('Oferta registrada exitosamente');
@@ -28,8 +32,31 @@ const JobOfferForm = () => {
     <Container className="mt-5">
       <h2 className="mb-4">Registrar Nueva Oferta Laboral</h2>
       <Form onSubmit={handleSubmit}>
+
         <Form.Group className="mb-3">
-          <Form.Label>Título del Puesto</Form.Label>
+          <Form.Label>Nombre de la Oferta</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Nivel</Form.Label>
+          <Form.Control
+            type="text"
+            name="level"
+            value={formData.level}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Título</Form.Label>
           <Form.Control
             type="text"
             name="title"
@@ -40,68 +67,84 @@ const JobOfferForm = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Empresa</Form.Label>
+          <Form.Label>Función</Form.Label>
           <Form.Control
-            type="text"
-            name="company"
-            value={formData.company}
+            as="textarea"
+            name="function"
+            value={formData.function}
             onChange={handleChange}
-            required
+            rows={3}
           />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Ubicación</Form.Label>
-          <Form.Control
-            type="text"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Tipo de Contrato</Form.Label>
-          <Form.Select name="type" value={formData.type} onChange={handleChange} required>
-            <option value="">Selecciona una opción</option>
-            <option value="Tiempo completo">Tiempo completo</option>
-            <option value="Medio tiempo">Medio tiempo</option>
-            <option value="Remoto">Remoto</option>
-            <option value="Pasantía">Pasantía</option>
-          </Form.Select>
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Salario</Form.Label>
           <Form.Control
-            type="text"
+            type="number"
             name="salary"
             value={formData.salary}
             onChange={handleChange}
+            step="0.01"
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Requisitos</Form.Label>
+          <Form.Label>Fecha de Inicio</Form.Label>
           <Form.Control
-            as="textarea"
-            name="requirements"
-            value={formData.requirements}
+            type="date"
+            name="date_start"
+            value={formData.date_start}
             onChange={handleChange}
-            rows={3}
-            required
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Descripción del Puesto</Form.Label>
+          <Form.Label>Fecha de Finalización</Form.Label>
           <Form.Control
-            as="textarea"
-            name="description"
-            value={formData.description}
+            type="date"
+            name="date_finish"
+            value={formData.date_finish}
             onChange={handleChange}
-            rows={3}
-            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Check
+            type="checkbox"
+            label="¿Está activa la oferta?"
+            name="status"
+            checked={formData.status}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>ID Tipo de Cargo</Form.Label>
+          <Form.Control
+            type="number"
+            name="charge_type_id"
+            value={formData.charge_type_id}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>ID del Usuario</Form.Label>
+          <Form.Control
+            type="number"
+            name="user_id"
+            value={formData.user_id}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>ID del Rango</Form.Label>
+          <Form.Control
+            type="number"
+            name="rank_id"
+            value={formData.rank_id}
+            onChange={handleChange}
           />
         </Form.Group>
 
