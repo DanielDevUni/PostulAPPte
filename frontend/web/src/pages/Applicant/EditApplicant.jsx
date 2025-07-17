@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
-// Simulamos una base de datos local con un aplicante
+// Simulamos 
 const aplicantes = [
   {
     id: 1,
@@ -59,7 +59,7 @@ const EditarAplicante = () => {
     }
   }, [id]);
 
-  // Esta función actualiza el estado a medida que el usuario escribe
+  // actualiza el estado a medida que el usuario escribe
   const handleChange = e => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
