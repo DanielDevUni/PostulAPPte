@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 
+// Simulamos una base de datos local con un aplicante
 const aplicantes = [
   {
     id: 1,
@@ -23,10 +24,13 @@ const aplicantes = [
 ];
 
 const EditarAplicante = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const { id } = useParams(); // Obtenemos el ID desde la URL
+  const navigate = useNavigate(); // Para redireccionar al usuario
 
+  // Estado para mostrar o no la contraseña
   const [showPassword, setShowPassword] = useState(false);
+
+  // Estado general del formulario, con todos los campos del aplicante
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -44,21 +48,24 @@ const EditarAplicante = () => {
     status: ''
   });
 
+  // Este efecto se ejecuta una vez al montar el componente
   useEffect(() => {
     const aplicante = aplicantes.find(ap => ap.id === parseInt(id));
     if (aplicante) {
-      setFormData(aplicante);
+      setFormData(aplicante); // Cargamos los datos en el formulario
     } else {
       alert('Aplicante no encontrado');
       navigate('/');
     }
   }, [id]);
 
+  // Esta función actualiza el estado a medida que el usuario escribe
   const handleChange = e => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Aquí validamos y enviamos el formulario
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -74,7 +81,7 @@ const EditarAplicante = () => {
       return;
     }
 
-    console.log('Datos actualizados:', formData);
+    console.log('Datos actualizados:', formData); // Aquí iría el fetch/axios real
     alert('Aplicante editado correctamente');
     navigate('/');
   };
@@ -85,6 +92,7 @@ const EditarAplicante = () => {
         <h3 className="mb-4 text-center">Editar Aplicante</h3>
         <Form onSubmit={handleSubmit}>
           <Row>
+            {/* Primera columna del formulario */}
             <Col md={6}>
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>
@@ -128,14 +136,13 @@ const EditarAplicante = () => {
                 />
               </Form.Group>
 
-              <div className="mb-3">
-                <Form.Check
-                  type="checkbox"
-                  label="Mostrar contraseñas"
-                  checked={showPassword}
-                  onChange={() => setShowPassword(!showPassword)}
-                />
-              </div>
+              <Form.Check
+                type="checkbox"
+                label="Mostrar contraseñas"
+                className="mb-3"
+                checked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+              />
 
               <Form.Group className="mb-3">
                 <Form.Label>Fecha de nacimiento</Form.Label>
@@ -143,6 +150,7 @@ const EditarAplicante = () => {
               </Form.Group>
             </Col>
 
+            {/* Segunda columna del formulario */}
             <Col md={6}>
               <Form.Group className="mb-3">
                 <Form.Label>Género</Form.Label>
@@ -181,17 +189,17 @@ const EditarAplicante = () => {
                 <Form.Control
                   name="documentId"
                   value={formData.documentId}
-                  readOnly
+                  readOnly // no se permite cambiar el número
                 />
               </Form.Group>
 
               <Form.Group className="mb-3">
-  <Form.Label>Estado</Form.Label>
-  <Form.Select name="status" value={formData.status} onChange={handleChange} required>
-    <option value="activo">Activo</option>
-    <option value="inactivo">Inactivo</option>
-  </Form.Select>
-</Form.Group>
+                <Form.Label>Estado</Form.Label>
+                <Form.Select name="status" value={formData.status} onChange={handleChange} required>
+                  <option value="activo">Activo</option>
+                  <option value="inactivo">Inactivo</option>
+                </Form.Select>
+              </Form.Group>
             </Col>
           </Row>
 
