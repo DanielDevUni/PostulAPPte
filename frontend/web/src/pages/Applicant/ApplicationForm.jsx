@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
 
-const PostulationForm = () => {
+const ApplicationForm = () => {
   const [formData, setFormData] = useState({
-    jobId: '', // ID de la oferta laboral
-    education: '',
-    experience: '',
-    skills: '',
-    availability: '',
-    salary: '',
-    coverLetter: '',
-    cvFile: null,
+    undergraduate_degree: null,
+    postgraduate_degree: null,
+    resume_pdf: null,
+    statement: '',
   });
 
   const handleChange = (e) => {
@@ -23,7 +19,6 @@ const PostulationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí se manejaría el envío a backend
     console.log('Postulación enviada:', formData);
     alert('Postulación enviada con éxito');
   };
@@ -32,54 +27,33 @@ const PostulationForm = () => {
     <Container className="my-5">
       <Card className="p-4">
         <h4 className="mb-4">Formulario de Postulación</h4>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} encType="multipart/form-data">
           <Row>
             <Col md={12}>
               <Form.Group className="mb-3">
-                <Form.Label>Nivel de estudios</Form.Label>
-                <Form.Control type="text" name="education" onChange={handleChange} required />
+                <Form.Label>Título de Pregrado (PDF)</Form.Label>
+                <Form.Control type="file" accept=".pdf" name="undergraduate_degree" onChange={handleChange} required />
               </Form.Group>
             </Col>
 
             <Col md={12}>
               <Form.Group className="mb-3">
-                <Form.Label>Experiencia laboral</Form.Label>
-                <Form.Control as="textarea" name="experience" onChange={handleChange} rows={3} required />
-              </Form.Group>
-            </Col>
-
-            <Col md={12}>
-              <Form.Group className="mb-3">
-                <Form.Label>Habilidades</Form.Label>
-                <Form.Control as="textarea" name="skills" onChange={handleChange} rows={2} required />
-              </Form.Group>
-            </Col>
-
-            <Col md={6}>
-              <Form.Group className="mb-3">
-                <Form.Label>Disponibilidad de inicio</Form.Label>
-                <Form.Control type="date" name="availability" onChange={handleChange} required />
-              </Form.Group>
-            </Col>
-
-            <Col md={6}>
-              <Form.Group className="mb-3">
-                <Form.Label>Expectativa salarial</Form.Label>
-                <Form.Control type="number" name="salary" onChange={handleChange} />
+                <Form.Label>Título de Posgrado (PDF)</Form.Label>
+                <Form.Control type="file" accept=".pdf" name="postgraduate_degree" onChange={handleChange} />
               </Form.Group>
             </Col>
 
             <Col md={12}>
               <Form.Group className="mb-3">
                 <Form.Label>Hoja de Vida (PDF)</Form.Label>
-                <Form.Control type="file" accept=".pdf" name="cvFile" onChange={handleChange} required />
+                <Form.Control type="file" accept=".pdf" name="resume_pdf" onChange={handleChange} required />
               </Form.Group>
             </Col>
 
             <Col md={12}>
               <Form.Group className="mb-3">
-                <Form.Label>Carta de Presentación (opcional)</Form.Label>
-                <Form.Control as="textarea" name="coverLetter" onChange={handleChange} rows={3} />
+                <Form.Label>Por qué deberían contratarte</Form.Label>
+                <Form.Control as="textarea" name="statement" rows={4} onChange={handleChange} required />
               </Form.Group>
             </Col>
 
@@ -93,4 +67,4 @@ const PostulationForm = () => {
   );
 };
 
-export default PostulationForm;
+export default ApplicationForm;
