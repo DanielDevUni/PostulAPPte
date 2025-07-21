@@ -16,8 +16,16 @@ import RestorePassword from './pages/login/RestorePassword.jsx';
 import ForgotPassword from './pages/login/ForgotPassword.jsx';
 import EditApplicant from './pages/Applicant/EditApplicant.jsx' 
 import ApplicationForm from './pages/Applicant/ApplicationForm.jsx';
-import JobOfferForm from './pages/Applicant/JobOfferForm.jsx';
-
+import JobOfferForm from './pages/human_talent_view/JobOfferForm.jsx';
+import ApplicationList from './pages/Applicant/ApplicationList.jsx' 
+import ViewApplicants from './pages/human_talent_view/ViewApplicants.jsx'
+import ApplicationView from './pages/Applicant/ApplicationDetail.jsx'
+import ApplicationDetail from './pages/Applicant/ApplicationDetail.jsx';
+import ViewOffers from './pages/human_talent_view/ViewOffers.jsx'
+import EditJobOffer from './pages/human_talent_view/EditJobOffer.jsx'
+import HumanTalentHome from './pages/human_talent_view/HumanTalentHome.jsx'
+import ApplicantHome from './pages/Applicant/ApplicantHome.jsx'
+import EditApplicationForm from './pages/Applicant/EditApplicationForm.jsx';
 
 function App() {
 
@@ -40,7 +48,15 @@ function App() {
             <Route path='/forgot-password' element={<ForgotPassword />}></Route>
             <Route path="/edit-applicant/:id" element={<EditApplicant />} /> 
             <Route path="/ApplicationForm" element={<ApplicationForm />} />
-            <Route path="/register-job-offer" element={<JobOfferForm />} />
+            <Route path="/human-talent/register-job-offer" element={<JobOfferForm />} />
+            <Route path="/applicant/applications" element={<ApplicationList />} />
+            <Route path="/human-talent/view-applicants" element={<ViewApplicants />} />
+            <Route path="/applicant/application-detail/:id" element={<ApplicationDetail />} />
+            <Route path="/human-talent/view-offers" element={<ViewOffers />} />
+            <Route path="/human-talent/edit-job-offer/:id" element={<EditJobOffer />} />
+            <Route path="/human-talent" element={<HumanTalentHome />} />
+            <Route path="/applicant" element={<ApplicantHome />} />
+            <Route path="/applicant/applications/edit-aplication/:id" element={<EditApplicationForm />} />
 
           </Routes> 
         </div> 
