@@ -11,6 +11,7 @@ import ApplicationForm from './components/Applicants/ApplicationForm.jsx'
 import JobOfferForm from './components/offers/JobOfferForm.jsx'
 import ApplicationList from './components/Applicants/ApplicationList.jsx'
 import HumanTalentHome from './pages/human_talent_view/HumanTalentHome.jsx';
+import EditJobOffer from './components/offers/EditJobOffer.jsx'
 
 function App() {
 
@@ -28,6 +29,8 @@ function App() {
             <Route path='/human-talent/job-offer-form' element={<JobOfferForm />}></Route>
             <Route path='/application-list' element={<ApplicationList />}></Route>
             <Route path='/human-talent' element={<HumanTalentHome />}></Route>
+            <Route path='/human-talent/edit-job-offer/:id' element={<EditJobOffer />}></Route>
+
           </Routes>
       </BrowserRouter>
     </>

@@ -31,6 +31,7 @@ export default function List() {
         if (now < start) {
             const diffMs = start - now;
             return `Disponible en ${Math.ceil(diffMs / (1000 * 60 * 60 * 24))} días`;
+
         }
         // Si ya finalizó, muestra "Expirada"
         if (now > finish) {
@@ -39,6 +40,7 @@ export default function List() {
         // Si está disponible, muestra días restantes
         const diffMs = finish - now;
         return `Disponible ${Math.ceil(diffMs / (1000 * 60 * 60 * 24))} días más`;
+
     }
     
     useEffect(() => {
