@@ -9,8 +9,8 @@ import Register from './components/auth/register.jsx';
 import Dashboard from './components/dashboard/admin.jsx';
 import ApplicationForm from './components/Applicants/ApplicationForm.jsx'
 import JobOfferForm from './components/offers/JobOfferForm.jsx'
-import EditApplicationForm from './components/Applicants/EditApplicationForm.jsx';
 import ApplicationList from './components/Applicants/ApplicationList.jsx'
+import HumanTalentHome from './pages/human_talent_view/HumanTalentHome.jsx';
 
 function App() {
 
@@ -25,9 +25,9 @@ function App() {
             <Route path='/register' element={<Register/>}></Route>
             <Route path='/dashboard' element={<Dashboard />}></Route>
             <Route path='/applicationform' element={<ApplicationForm />}></Route>
-            <Route path='/job-offer-form' element={<JobOfferForm />}></Route>
+            <Route path='/human-talent/job-offer-form' element={<JobOfferForm />}></Route>
             <Route path='/application-list' element={<ApplicationList />}></Route>
-            <Route path="/edit-aplication/:id" element={<EditApplicationForm />} />
+            <Route path='/human-talent' element={<HumanTalentHome />}></Route>
           </Routes>
       </BrowserRouter>
     </>
