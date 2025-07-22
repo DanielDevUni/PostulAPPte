@@ -7,6 +7,8 @@ import Header from './components/Header.jsx';
 import Login from './components/auth/login.jsx';
 import Register from './components/auth/register.jsx';
 import Dashboard from './components/dashboard/admin.jsx';
+import ApplicationForm from './components/Applicants/ApplicationForm.jsx'
+import JobOfferForm from './components/offers/JobOfferForm.jsx'
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/register' element={<Register/>}></Route>
             <Route path='/dashboard' element={<Dashboard />}></Route>
+            <Route path='/applicationform' element={<ApplicationForm />}></Route>
+            <Route path='/job-offer-form' element={<JobOfferForm />}></Route>
           </Routes>
       </BrowserRouter>
     </>
