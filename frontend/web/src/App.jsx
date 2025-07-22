@@ -11,6 +11,7 @@ import ApplicationForm from './components/Applicants/ApplicationForm.jsx'
 import JobOfferForm from './components/offers/JobOfferForm.jsx'
 import ApplicationList from './components/Applicants/ApplicationList.jsx'
 import HumanTalentHome from './pages/human_talent_view/HumanTalentHome.jsx';
+import EditJobOffer from './components/offers/EditJobOffer.jsx'
 import ProfileUser from './pages/Profile/ProfileUser.jsx';
 import ForgotPassword from './pages/login/ForgotPassword.jsx';
 import RestorePassowrd from './pages/login/RestorePassword.jsx';
@@ -31,6 +32,8 @@ function App() {
             <Route path='/human-talent/job-offer-form' element={<JobOfferForm />}></Route>
             <Route path='/application-list' element={<ApplicationList />}></Route>
             <Route path='/human-talent' element={<HumanTalentHome />}></Route>
+            <Route path='/human-talent/edit-job-offer/:id' element={<EditJobOffer />}></Route>
+
             <Route path='/profile' element={<ProfileUser />}></Route>
             <Route path='/forgot-password' element={<ForgotPassword />}></Route>
             <Route path='/restore-password' element={<RestorePassowrd />}></Route>
