@@ -6,6 +6,8 @@ const usersApi = axios.create({
 
 export const getUsers = async () => usersApi.get();
 
+export const deleteUser = async (userId) => usersApi.delete(`${userId}/`);
+
 export const getAccessToken = () => {
   return localStorage.getItem("accessToken");
 };
