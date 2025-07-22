@@ -9,6 +9,8 @@ import Register from './components/auth/register.jsx';
 import Dashboard from './components/dashboard/admin.jsx';
 import ApplicationForm from './components/Applicants/ApplicationForm.jsx'
 import JobOfferForm from './components/offers/JobOfferForm.jsx'
+import EditApplicationForm from './components/Applicants/EditApplicationForm.jsx';
+import ApplicationList from './components/Applicants/ApplicationList.jsx'
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />}></Route>
             <Route path='/applicationform' element={<ApplicationForm />}></Route>
             <Route path='/job-offer-form' element={<JobOfferForm />}></Route>
+            <Route path='/application-list' element={<ApplicationList />}></Route>
+            <Route path="/edit-aplication/:id" element={<EditApplicationForm />} />
           </Routes>
       </BrowserRouter>
     </>
