@@ -6,7 +6,7 @@ const offersApi = axios.create({
 
 export const getOffers = async () => offersApi.get()
 
-// Crear una nueva oferta (AGREGA ESTA FUNCIÓN)
+// Crear una nueva oferta 
 export const createOffer = async (formData) => {
     return await offersApi.post('/', formData, {
         headers: {
