@@ -95,6 +95,9 @@ function Login() {
                             <a href="/register" className='btn btn-outline-custom w-100 mt-2'>
                                 ¿No tienes cuenta? Regístrate
                             </a>
+                            <a href="/forgot-password" className= 'btn btn-outline-secondary w-100 mt-2'>
+                                Olvidé mi contraseña
+                            </a>
                         </form>
                     </div>
                 </div>

@@ -101,27 +101,27 @@ const UserProfile = () => {
 
   return (
     <Container className="my-4">
-      <Card className="p-3 shadow-sm">
+      <Card className="p-3 shadow-sm card-form">
         <Row className="align-items-center mb-4">
           <Col md={2} className="text-center">
-            <FaUserCircle size={80} className="text-primary" />
+            <FaUserCircle size={80} className="text-custom" />
           </Col>
           <Col md={6}>
-            <h5 className="mb-0">{formData.name} {formData.surname}</h5>
+            <h5 className="mb-0 title-custom">{formData.name} {formData.surname}</h5>
             <small className="text-muted">Usuario: {formData.username}</small>
             <div className="mt-2 d-flex gap-3">
-              <FaFacebookF className="text-secondary" />
-              <FaGithub className="text-secondary" />
-              <FaLinkedinIn className="text-secondary" />
+              <FaFacebookF className="text-custom" />
+              <FaGithub className="text-custom" />
+              <FaLinkedinIn className="text-custom" />
             </div>
           </Col>
           <Col md={4} className="d-flex justify-content-end gap-3">
             <Card className="text-center p-2 w-50 bg-light border-0">
-              <div className="fw-bold fs-5 text-primary">7</div>
+              <div className="fw-bold fs-5 text-custom">7</div>
               <small className="text-muted">Citaciones y Entrevistas</small>
             </Card>
             <Card className="text-center p-2 w-50 bg-light border-0">
-              <div className="fw-bold fs-5 text-primary">42</div>
+              <div className="fw-bold fs-5 text-custom">42</div>
               <small className="text-muted">Postulaciones Realizadas</small>
             </Card>
           </Col>
@@ -137,14 +137,27 @@ const UserProfile = () => {
           <Row className="mb-3">
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" name="email" value={formData.email} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Email</Form.Label>
+                <Form.Control 
+                  type="email" 
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Tipo de Documento</Form.Label>
-                <Form.Select name="typeDocument" value={formData.typeDocument} onChange={handleChange} disabled={!isLoggedIn}>
+                <Form.Label className="text-custom">Tipo de Documento</Form.Label>
+                <Form.Select 
+                  name="typeDocument" 
+                  value={formData.typeDocument} 
+                  onChange={handleChange} 
+                  disabled={!isLoggedIn}
+                  className="border-custom"
+                >
                   <option>C.C</option>
                   <option>T.I</option>
                   <option>Pasaporte</option>
@@ -153,8 +166,15 @@ const UserProfile = () => {
             </Col>
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Número de Documento</Form.Label>
-                <Form.Control type="text" name="documentId" value={formData.documentId} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Número de Documento</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name="documentId" 
+                  value={formData.documentId} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
           </Row>
@@ -162,20 +182,41 @@ const UserProfile = () => {
           <Row className="mb-3">
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Nombre</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name="name" 
+                  value={formData.name} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Apellidos</Form.Label>
-                <Form.Control type="text" name="surname" value={formData.surname} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Apellidos</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name="surname" 
+                  value={formData.surname} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Nombre de Usuario</Form.Label>
-                <Form.Control type="text" name="username" value={formData.username} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Nombre de Usuario</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name="username" 
+                  value={formData.username} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
           </Row>
@@ -183,8 +224,14 @@ const UserProfile = () => {
           <Row className="mb-3">
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Género</Form.Label>
-                <Form.Select name="gender" value={formData.gender} onChange={handleChange} disabled={!isLoggedIn}>
+                <Form.Label className="text-custom">Género</Form.Label>
+                <Form.Select 
+                  name="gender" 
+                  value={formData.gender} 
+                  onChange={handleChange} 
+                  disabled={!isLoggedIn}
+                  className="border-custom"
+                >
                   <option>Femenino</option>
                   <option>Masculino</option>
                   <option>Otro</option>
@@ -193,14 +240,28 @@ const UserProfile = () => {
             </Col>
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Fecha de Nacimiento</Form.Label>
-                <Form.Control type="date" name="birthdate" value={formData.birthdate} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Fecha de Nacimiento</Form.Label>
+                <Form.Control 
+                  type="date" 
+                  name="birthdate" 
+                  value={formData.birthdate} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Dirección</Form.Label>
-                <Form.Control type="text" name="address" value={formData.address} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Dirección</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name="address" 
+                  value={formData.address} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
           </Row>
@@ -208,21 +269,35 @@ const UserProfile = () => {
           <Row className="mb-3">
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Teléfono</Form.Label>
-                <Form.Control type="text" name="phone" value={formData.phone} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Teléfono</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name="phone" 
+                  value={formData.phone} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
             <Col md={4}>
               <Form.Group>
-                <Form.Label>Celular</Form.Label>
-                <Form.Control type="text" name="cellphone" value={formData.cellphone} onChange={handleChange} readOnly={!isLoggedIn} />
+                <Form.Label className="text-custom">Celular</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name="cellphone" 
+                  value={formData.cellphone} 
+                  onChange={handleChange} 
+                  readOnly={!isLoggedIn} 
+                  className="border-custom"
+                />
               </Form.Group>
             </Col>
           </Row>
 
           {isLoggedIn && (
             <div className="text-center">
-              <Button variant="primary" className="px-5" type="submit">
+              <Button variant="primary" className="btn-custom px-5" type="submit">
                 Actualizar Datos
               </Button>
             </div>
